@@ -4,7 +4,7 @@ import { Buffer } from "https://deno.land/std@0.177.0/node/buffer.ts";
 
 // 预设管理员账户和密码
 const ADMIN_CREDENTIALS = [
-  { username: "admin", password: "cocoiris" }
+  { username: "wendy", password: "cocoiris" }
 ];
 
 // 认证函数：验证 Authorization 头
