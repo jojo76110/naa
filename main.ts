@@ -4,6 +4,43 @@ import { serve } from "https://deno.land/std@0.224.0/http/server.ts";
 import { serveDir } from "https://deno.land/std@0.224.0/http/file_server.ts";
 import { Buffer } from "https://deno.land/std@0.177.0/node/buffer.ts";
 
+import { serve } from "https://deno.land/std@0.140.0/http/server.ts";
+
+const USERNAME = "admin"; // 设置用户名
+const PASSWORD = "yourpassword"; // 设置密码
+
+async function handler(req: Request): Promise<Response> {
+  const auth = req.headers.get("Authorization");
+  if (!auth) {
+    return new Response("Unauthorized", {
+      status: 401,
+      headers: {
+        "WWW-Authenticate": 'Basic realm="Restricted Area"',
+      },
+    });
+  }
+
+  const [_, base64] = auth.split(" ");
+  const credentials = atob(base64).split(":");
+  if (credentials[0] !== USERNAME || credentials[1] !== PASSWORD) {
+    return new Response("Unauthorized", {
+      status: 401,
+      headers: {
+        "WWW-Authenticate": 'Basic realm="Restricted Area"',
+      },
+    });
+  }
+
+  // 正常处理请求
+  return new Response("Welcome to the protected site!", {
+    status: 200,
+    headers: { "content-type": "text/plain" },
+  });
+}
+
+serve(handler);
+
+
 // --- 辅助函数：生成错误 JSON 响应 ---
 // 注意：您代码中这部分是折叠的，这里我保持原样。如果需要具体实现，请告知。
 function createJsonErrorResponse(message: string, statusCode = 500) {
