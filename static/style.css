@@ -1,61 +1,74 @@
 /* static/style.css */
-@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
 
 body {
-  background: linear-gradient(180deg, #0d0d0d 0%, #1a1a2e 100%);
-  color: #e0e0e0;
-  font-family: 'Orbitron', sans-serif;
+  background: linear-gradient(180deg, #0a0f2a 0%, #1e2a44 100%);
+  color: #e6e6f0;
+  font-family: 'Inter', sans-serif;
   margin: 0;
+  padding: 0;
+  line-height: 1.6;
   overflow-x: hidden;
 }
 
 /* 主体大字体样式 */
 h1, h2, h3 {
-  color: #00ffea; /* 电蓝霓虹色 */
-  text-shadow: 
-    0 0 5px #00ffea,
-    0 0 10px #00ffea,
-    0 0 20px #00ffea,
-    0 0 40px #ff00ff; /* 紫色外晕 */
-  letter-spacing: 2px;
-  animation: neon-flicker 1.5s infinite alternate;
+  color: #ffffff; /* 纯白用于标题，专业且清晰 */
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  transition: color 0.3s ease;
 }
 
-/* 霓虹闪烁动画 */
-@keyframes neon-flicker {
-  0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
-    text-shadow: 
-      0 0 5px #00ffea,
-      0 0 10px #00ffea,
-      0 0 20px #00ffea,
-      0 0 40px #ff00ff;
-    opacity: 1;
-  }
-  20%, 24%, 55% {
-    text-shadow: none;
-    opacity: 0.6;
-  }
+h1:hover, h2:hover, h3:hover {
+  color: #40c4ff; /* 浅蓝高亮，悬停时触发 */
 }
 
-/* 故障效果（可选，应用于特定元素） */
-.glitch {
-  position: relative;
-  animation: glitch 1s linear infinite;
+/* 容器样式，确保内容居中 */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
 }
 
-@keyframes glitch {
-  2%, 64% {
-    transform: translate(2px, 0) skew(5deg);
-  }
-  4%, 60% {
-    transform: translate(-2px, 0) skew(-5deg);
-  }
-  62% {
-    transform: translate(0, 0) skew(0);
-  }
+/* 按钮样式，专业且科技感 */
+button, a.button {
+  background: #40c4ff;
+  border: none;
+  color: #0a0f2a;
+  padding: 12px 24px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
 }
 
-/* 背景网格线（可选） */
+button:hover, a.button:hover {
+  background: #0288d1;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(64, 196, 255, 0.3);
+}
+
+/* 输入框样式（如有表单） */
+input, textarea {
+  background: #2a344f;
+  border: 1px solid #40c4ff;
+  color: #e6e6f0;
+  padding: 10px;
+  border-radius: 6px;
+  font-family: 'Inter', sans-serif;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+input:focus, textarea:focus {
+  outline: none;
+  border-color: #0288d1;
+  box-shadow: 0 0 8px rgba(64, 196, 255, 0.5);
+}
+
+/* 背景装饰：微妙的科技感线条 */
 body::before {
   content: '';
   position: fixed;
@@ -63,34 +76,6 @@ body::before {
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(
-      to right,
-      rgba(255, 255, 255, 0.03) 1px,
-      transparent 1px
-    ),
-    linear-gradient(
-      to bottom,
-      rgba(255, 255, 255, 0.03) 1px,
-      transparent 1px
-    );
-  background-size: 40px 40px;
+  background: radial-gradient(circle, rgba(64, 196, 255, 0.1) 0%, transparent 70%);
   z-index: -1;
-}
-
-/* 按钮或交互元素样式 */
-button, a.button {
-  background: none;
-  border: 2px solid #ff00ff;
-  color: #ff00ff;
-  padding: 10px 20px;
-  font-family: 'Orbitron', sans-serif;
-  text-transform: uppercase;
-  cursor: pointer;
-  transition: all 0.3s;
-}
-
-button:hover, a.button:hover {
-  background: #ff00ff;
-  color: #0d0d0d;
-  box-shadow: 0 0 10px #ff00ff, 0 0 20px #ff00ff;
 }
