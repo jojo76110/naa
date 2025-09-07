@@ -103,9 +103,10 @@ textarea {
   text-align: center;
   cursor: pointer;
   transition: border-color 0.3s ease;
+  position: relative;
 }
 
-.upload-area:hover {
+.upload-area:hover, .upload-area.drag-over {
   border-color: #0288d1;
 }
 
@@ -119,6 +120,11 @@ textarea {
   font-size: 0.9rem;
 }
 
+/* 隐藏原生文件输入框 */
+#image-upload {
+  display: none;
+}
+
 /* 缩略图容器 */
 #thumbnails-container {
   display: flex;
@@ -127,10 +133,37 @@ textarea {
   margin-top: 10px;
 }
 
-#thumbnails-container img {
+.thumbnail-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.thumbnail-wrapper img {
   max-width: 100px;
   border-radius: 6px;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+/* 移除按钮 */
+.remove-btn {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background: #ff5252;
+  color: #ffffff;
+  border: none;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  line-height: 20px;
+  text-align: center;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background 0.3s ease;
+}
+
+.remove-btn:hover {
+  background: #d32f2f;
 }
 
 /* 生成按钮 */
@@ -155,6 +188,13 @@ textarea {
   background: #0288d1;
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(64, 196, 255, 0.3);
+}
+
+#generate-btn:disabled {
+  background: #78909c;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
 }
 
 .spinner {
@@ -189,7 +229,7 @@ textarea {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
-#result-image-container p {
+#result-image-container p, .status-text {
   color: #b0bec5;
 }
 
