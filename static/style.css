@@ -6,53 +6,74 @@ body {
   color: #e6e6f0;
   font-family: 'Inter', sans-serif;
   margin: 0;
-  padding: 0;
+  padding: 20px;
   line-height: 1.6;
   overflow-x: hidden;
 }
 
-/* 主体大字体样式 */
-h1, h2, h3 {
-  color: #ffffff; /* 纯白用于标题，专业且清晰 */
+/* 主体大字体样式（替换偏黄色） */
+.title {
+  color: #ffffff; /* 纯白，专业且清晰 */
+  font-size: 2.5rem;
   font-weight: 700;
   letter-spacing: 0.5px;
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   transition: color 0.3s ease;
+  text-align: center;
+  margin-bottom: 10px;
 }
 
-h1:hover, h2:hover, h3:hover {
+.title:hover {
   color: #40c4ff; /* 浅蓝高亮，悬停时触发 */
 }
 
-/* 容器样式，确保内容居中 */
-.container {
+.subtitle {
+  color: #b0bec5;
+  font-size: 1.2rem;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* 主容器 */
+.main-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 20px;
 }
 
-/* 按钮样式，专业且科技感 */
-button, a.button {
-  background: #40c4ff;
-  border: none;
-  color: #0a0f2a;
-  padding: 12px 24px;
-  font-family: 'Inter', sans-serif;
-  font-weight: 600;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: background 0.3s ease, transform 0.2s ease;
-}
-
-button:hover, a.button:hover {
-  background: #0288d1;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(64, 196, 255, 0.3);
-}
-
-/* 输入框样式（如有表单） */
-input, textarea {
+/* 控件容器 */
+.controls-container {
+  flex: 1;
+  min-width: 300px;
   background: #2a344f;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* 结果容器 */
+.result-container {
+  flex: 1;
+  min-width: 300px;
+  background: #2a344f;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* 标题（h2） */
+h2 {
+  color: #ffffff;
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 15px;
+}
+
+/* 输入框和文本区域 */
+input, textarea {
+  background: #1e2a44;
   border: 1px solid #40c4ff;
   color: #e6e6f0;
   padding: 10px;
@@ -60,6 +81,7 @@ input, textarea {
   font-family: 'Inter', sans-serif;
   width: 100%;
   box-sizing: border-box;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 input:focus, textarea:focus {
@@ -68,7 +90,110 @@ input:focus, textarea:focus {
   box-shadow: 0 0 8px rgba(64, 196, 255, 0.5);
 }
 
-/* 背景装饰：微妙的科技感线条 */
+textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+/* 上传区域 */
+.upload-area {
+  border: 2px dashed #40c4ff;
+  border-radius: 8px;
+  padding: 20px;
+  text-align: center;
+  cursor: pointer;
+  transition: border-color 0.3s ease;
+}
+
+.upload-area:hover {
+  border-color: #0288d1;
+}
+
+.upload-area p {
+  margin: 0;
+  color: #b0bec5;
+}
+
+.upload-area span {
+  color: #78909c;
+  font-size: 0.9rem;
+}
+
+/* 缩略图容器 */
+#thumbnails-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+#thumbnails-container img {
+  max-width: 100px;
+  border-radius: 6px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+/* 生成按钮 */
+#generate-btn {
+  background: #40c4ff;
+  border: none;
+  color: #0a0f2a;
+  padding: 12px 24px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+#generate-btn:hover {
+  background: #0288d1;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(64, 196, 255, 0.3);
+}
+
+.spinner {
+  border: 3px solid #e6e6f0;
+  border-top: 3px solid #0288d1;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.hidden {
+  display: none;
+}
+
+/* 结果图片容器 */
+#result-image-container {
+  background: #1e2a44;
+  border-radius: 8px;
+  padding: 20px;
+  text-align: center;
+}
+
+#result-image-container img {
+  max-width: 100%;
+  border-radius: 6px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+#result-image-container p {
+  color: #b0bec5;
+}
+
+/* 背景装饰：微妙的科技感 */
 body::before {
   content: '';
   position: fixed;
